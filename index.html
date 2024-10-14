@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Знаменитые композиторы</title>
+<link rel="icon" href="../images/logo.jpg">
+<style>
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    animation: slideInDown 1s ease-out;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.search-container {
+    position: relative;
+}
+
+#search-bar {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 200px;
+    transition: width 0.3s ease;
+}
+
+#search-bar:focus {
+    outline: none;
+    width: 250px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.composers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.composer {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color: inherit;
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+    position: relative;
+}
+
+.composer:nth-child(1) { animation-delay: 0.1s; }
+.composer:nth-child(2) { animation-delay: 0.2s; }
+.composer:nth-child(3) { animation-delay: 0.3s; }
+/* Add more if you have more composers */
+
+.composer:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.composer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #3498db, #9b59b6);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.composer:hover::before {
+    opacity: 0.8;
+}
+
+.composer-content {
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.composer h2 {
+    margin-top: 0;
+    color: #3498db;
+    font-size: 1.4em;
+    transition: color 0.3s ease;
+}
+
+.composer:hover h2 {
+    color: #fff;
+}
+
+.composer p {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.composer:hover p {
+    color: #f0f0f0;
+}
+
+.composer img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.composer:hover img {
+    transform: scale(1.1);
+    filter: grayscale(50%) brightness(70%);
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-container {
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    #search-bar {
+        width: 100%;
+    }
+    
+    #search-bar:focus {
+        width: 100%;
+    }
+    
+    .composers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Знаменитые композиторы в истории</h1>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Поиск композиторов...">
+        </div>
+    </div>
+    <div class="composers-grid">
+        <a href="../bach/" class="composer">
+            <img src="../bach/images/bach.jpg" alt="Иоганн Себастьян Бах">
+            <div class="composer-content">
+                <h2>Иоганн Себастьян Бах</h2>
+                <p><strong>Период:</strong> Барокко</p>
+                <p><strong>Известные произведения:</strong> Бранденбургские концерты, Хорошо темперированный клавир</p>
+            </div>
+        </a>
+        <a href="../beethoven/" class="composer">
+            <img src="../beethoven/images/beethoven.jpg" alt="Людвиг ван Бетховен">
+            <div class="composer-content">
+                <h2>Людвиг ван Бетховен</h2>
+                <p><strong>Период:</strong> Классицизм, Романтизм</p>
+                <p><strong>Известные произведения:</strong> Симфония №5, Симфония №9 (Ода к радости)</p>
+            </div>
+        </a>        
+        <a href="../bizet/" class="composer">
+            <img src="../bizet/images/bizet.jpg" alt="Жорж Бизе">
+            <div class="composer-content">
+                <h2>Жорж Бизе</h2>
+                <p><strong>Период:</strong> Романтизм</p>
+                <p><strong>Известные произведения:</strong> Кармен, Арлезианка</p>
+            </div>
+        </a>
+        <a href="../mozart/" class="composer">
+            <img src="../mozart/images/mozart.jpg" alt="Вольфганг Амадей Моцарт">
+            <div class="composer-content">
+                <h2>Вольфганг Амадей Моцарт</h2>
+                <p><strong>Период:</strong> Классицизм</p>
+                <p><strong>Известные произведения:</strong> Волшебная флейта, Симфония №41 (Юпитер)</p>
+            </div>
+        </a>
+        <!-- Add more composer links here -->
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBar = document.getElementById('search-bar');
+    const composers = document.querySelectorAll('.composer');
+
+    searchBar.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+
+        composers.forEach(composer => {
+            const composerName = composer.querySelector('h2').textContent.toLowerCase();
+            const composerPeriod = composer.querySelector('p:nth-of-type(1)').textContent.toLowerCase();
+            const composerWorks = composer.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
+
+            if (composerName.includes(searchTerm) || composerPeriod.includes(searchTerm) || composerWorks.includes(searchTerm)) {
+                composer.style.display = 'block';
+            } else {
+                composer.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

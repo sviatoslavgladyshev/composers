@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>В.А. Моцарт</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #1a5f7a, #159895);
+            color: #ecf0f1;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #e0e0e0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #159895;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1a5f7a;
+            border-bottom: 2px solid #159895;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #159895;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #159895;
+            border: 4px solid #f8f5f0;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #159895;
+            background-color: #e6f3f5;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #159895;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #1a5f7a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #159895;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #1a5f7a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Вольфганг Амадей Моцарт</h1>
+            <p class="subtitle">Австрийский композитор (1756-1791 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1756</strong> - Родился 27 января в Зальцбурге.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1760</strong> - В четырёхлетнем возрасте пробовал написать концерт для клавесина.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1762</strong> - С шести лет блестяще выступал с концертами по странам Европы.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1765</strong> - Опубликованы и исполнены его первые симфонии.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1769</strong> - Получил место концертмейстера при дворе архиепископа в Зальцбурге.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1770</strong> - Стал членом Филармонической академии в Болонье. Папа Римский Климент XIV возвёл его в рыцари Золотой шпоры.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1781</strong> - Переехал в Вену.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1786</strong> - Написана опера "Свадьба Фигаро".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1787</strong> - Написана опера "Дон Жуан".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1791</strong> - Написаны оперы "Милосердие Тита" и "Волшебная флейта". Начал работу над "Реквиемом".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1791</strong> - Умер 5 декабря в Вене.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Первым учителем музыки для Моцарта стал его отец, Леопольд Моцарт, композитор и скрипач придворной капеллы архиепископа Зальцбургского.</p>
+                    <p>Моцарт обладал необыкновенной музыкальной памятью: ему достаточно было только раз услышать любое музыкальное произведение, чтобы совершенно точно записать его.</p>
+                    <p>В 1770 году в Милане была поставлена первая опера Моцарта "Митридат, царь понтийский". В 1772 году там же поставлена вторая опера — "Луций Сулла", а в 1775 году в Мюнхене — опера "Мнимая садовница".</p>
+                    <p>Несмотря на короткую жизнь, творческое наследие Моцарта огромно: по каталогу Л. фон Кёхеля, композитор создал 626 произведений, среди которых 55 концертов, 22 клавирные сонаты, 32 струнных квартета и 49 симфоний.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Опера "Свадьба Фигаро" (1786)</li>
+                    <li>Опера "Дон Жуан" (1787)</li>
+                    <li>Опера "Так поступают все" (1790)</li>
+                    <li>Опера "Волшебная флейта" (1791)</li>
+                    <li>"Реквием" (1791, не завершен)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../mozart/images/mozart.jpg" alt="Вольфганг Амадей Моцарт" title="Портрет Вольфганга Амадея Моцарта">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../mozart/music/Mozart_figaro.mp3">Увертюра "Свадьба Фигаро"</li>
+                        <li data-src="../mozart/music/Mozart_40.mp3">Симфония №40</li>
+                        <li data-src="../mozart/music/Mozart_41.mp3">Симфония №41</li>
+                        <li data-src="../mozart/music/Mozart_requiem.mp3">Реквием</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Моцарт был "чудо-ребёнком", начавшим сочинять музыку в возрасте 5 лет.</li>
+                    <li>Он написал свою первую оперу в 14 лет.</li>
+                    <li>За свою короткую жизнь Моцарт создал более 600 произведений.</li>
+                    <li>Он обладал абсолютным слухом и феноменальной музыкальной памятью.</li>
+                    <li>Последним произведением Моцарта стал "Реквием", который он не успел завершить.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <a href="../index.html" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
