@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Людвиг ван Бетховен</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #4a0e0e, #8B0000);
+            color: #ecf0f1;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #e0e0e0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #8B0000;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #4a0e0e;
+            border-bottom: 2px solid #8B0000;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #8B0000;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #8B0000;
+            border: 4px solid #f8f5f0;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #8B0000;
+            background-color: #f9e6e6;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #8B0000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #4a0e0e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #4a0e0e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Людвиг ван Бетховен</h1>
+            <p class="subtitle">Немецкий композитор, пианист и дирижёр (1770-1827 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1770</strong> - Родился в предместье города Бонн (ныне Германия).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1774</strong> - Начал брать уроки музыки у своего отца.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1784</strong> - Устроился на работу помощником органиста в местной капелле.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1787</strong> - После смерти матери начал сам содержать младших братьев.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1792</strong> - Переезжает в Вену, чтобы брать уроки у Йозефа Гайдна.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1796</strong> - Начинаются проблемы со слухом.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1800</strong> - Появляются первые симфонии.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1811</strong> - Болезнь уха приводит к полной глухоте.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1824</strong> - Завершает работу над Девятой симфонией.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1827</strong> - Умер 26 марта в Вене в возрасте 57 лет.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Бетховен рос в семье музыкантов: его отец был тенором придворной капеллы, а дедушка — придворным капельмейстером. Уже в четыре года у юного Бетховена начались уроки музыки, которые давал ему папа: занятия на клавесине длились по 6 часов в день.</p>
+                    <p>В 14 лет Людвиг ушёл из школы и начал работать помощником органиста в местной капелле. В это время он больше узнает об опере и развивает свои музыкальные навыки.</p>
+                    <p>Переехав в Вену, Бетховен учился у известных композиторов того времени: Йозефа Гайдна, Иоганна Георга Альбрехтсбергера и Антонио Сальери. Его виртуозная игра на фортепиано быстро принесла ему славу.</p>
+                    <p>Несмотря на прогрессирующую глухоту, Бетховен продолжал сочинять музыку. Он использовал специальную палочку, прикрепленную к фортепиано, чтобы ощущать вибрации звука. В этот период он создал свои самые известные произведения, включая Девятую симфонию.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Симфония №3 "Героическая" (1804)</li>
+                    <li>Симфония №5 (1808)</li>
+                    <li>Симфония №9 (1824)</li>
+                    <li>"Лунная соната" (1801)</li>
+                    <li>"Патетическая соната" (1799)</li>
+                    <li>Опера "Фиделио" (1805)</li>
+                    <li>"Торжественная месса" (1824)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../beethoven/images/beethoven.jpg" alt="Людвиг ван Бетховен" title="Портрет Людвига ван Бетховена">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../beethoven/music/symphony_5.mp3">Симфония №5</li>
+                        <li data-src="../beethoven/music/betkhoven-lunnaja-sonata.mp3">Лунная соната</li>
+                        <li data-src="../beethoven/music/elisa.mp3">К Элизе</li>
+                        <li data-src="../beethoven/music/sonata_5.mp3">Соната №5 (Патетическая)</li>
+                        <li data-src="../beethoven/music/surok.mp3">Сурок</li>
+                        <li data-src="../beethoven/music/symphony_9.mp3">Симфония 9 (финал)</li>
+                        <li data-src="../beethoven/music/sonatina.mp3">Сонатина соль мажор</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Бетховен начал терять слух в возрасте 26 лет и к 44 годам полностью оглох.</li>
+                    <li>Несмотря на глухоту, он продолжал сочинять музыку, используя вибрации инструмента.</li>
+                    <li>Его Девятая симфония считается одним из величайших музыкальных произведений всех времен.</li>
+                    <li>Бетховен никогда не был женат и не имел детей.</li>
+                    <li>Он был известен своим вспыльчивым характером и эксцентричным поведением.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <a href="../index.html" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
