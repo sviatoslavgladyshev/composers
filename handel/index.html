@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Георг Фридрих Гендель</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #e0e0e0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #34495e;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #34495e;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #34495e;
+            border: 4px solid #f8f5f0;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #34495e;
+            background-color: #ecf0f1;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #34495e;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #2c3e50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #2c3e50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Георг Фридрих Гендель</h1>
+            <p class="subtitle">Немецкий композитор (1685-1759 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1685</strong> - Родился 27 февраля в городе Галле.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1697</strong> - После смерти отца решил посвятить себя музыке.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1703</strong> - Переехал в Гамбург, где работал в Гамбургской опере.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1705</strong> - Написал и поставил свою первую оперу "Альмира".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1706-1710</strong> - Жил в Италии, совершенствуя мастерство.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1711</strong> - Поставил оперу "Ринальдо" в Лондоне.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1719</strong> - Возглавил оперный театр "Королевская академия музыки" в Лондоне.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1727</strong> - Получил английское подданство.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1737</strong> - Перенес частичный паралич.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1741</strong> - Написал последнюю оперу "Дейдамия".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1742</strong> - Создал ораторию "Мессия".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1752</strong> - Начало ухудшения зрения.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1759</strong> - Скончался 14 апреля в Лондоне.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Георг Фридрих Гендель, несмотря на желание отца видеть его юристом, с раннего детства проявлял талант к музыке. Он обучался игре на органе и композиции у Ф. В. Цахау.</p>
+                    <p>Гендель прославился как композитор опер, написав более 40 произведений в этом жанре. Его оперы, такие как "Агриппина" и "Ринальдо", принесли ему международную известность.</p>
+                    <p>После финансовых трудностей с оперным театром, Гендель обратился к жанру оратории, создав такие шедевры как "Мессия", "Самсон" и "Иуда Маккавей".</p>
+                    <p>Композитор был также известен как виртуозный исполнитель на органе и клавесине, часто выступая с концертами.</p>
+                    <p>Несмотря на ухудшение здоровья и потерю зрения в конце жизни, Гендель продолжал сочинять музыку и руководить исполнением своих произведений до последних дней.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>"Альмира" (опера, 1705)</li>
+                    <li>"Агриппина" (опера, 1709)</li>
+                    <li>"Ринальдо" (опера, 1711)</li>
+                    <li>"Музыка на воде" (сюита, 1717)</li>
+                    <li>"Юлий Цезарь в Египте" (опера, 1724)</li>
+                    <li>"Музыка для королевского фейерверка" (сюита, 1749)</li>
+                    <li>"Мессия" (оратория, 1742)</li>
+                    <li>"Самсон" (оратория, 1743)</li>
+                    <li>"Иуда Маккавей" (оратория, 1747)</li>
+                    <li>"Большие концерты" (18 концертов для оркестра)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../handel/images/handel.jpg" alt="Георг Фридрих Гендель" title="Портрет Георга Фридриха Генделя">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../handel/music/05 - Гендель - Хорнпайп  (audiopoisk.com).mp3">Хорнпайп</li>
+                        <li data-src="../handel/music/10 - Гендель - Сарабанда использовалась в фильме гладиатор (audiopoisk.com).mp3">Сарабанда (использовалась в фильме "Гладиатор")</li>
+                        <li data-src="../handel/music/Гендель - Concerto grosso Op3 N6,2  (audiopoisk.com).mp3">Concerto grosso Op3 N6,2</li>
+                        <li data-src="../handel/music/Гендель - Largo  (audiopoisk.com).mp3">Largo</li>
+                        <li data-src="../handel/music/Гендель - Аллилуйя  (audiopoisk.com).mp3">Аллилуйя</li>
+                        <li data-src="../handel/music/Гендель - Менуэт  (audiopoisk.com).mp3">Менуэт</li>
+                        <li data-src="../handel/music/Гендель - Пассакалия  (audiopoisk.com).mp3">Пассакалия</li>
+                        <li data-src="../handel/music/Гендель Георг (Музыка фейерверка)- 4. La rejouissance(Радость) Allegro.mp3">La rejouissance(Радость) (Музыка фейерверка) </li>
+                        <li data-src="../handel/music/Гендель Георг Фридрих [club13333245]- Сюита №1, фа мажор. V - Air (Музыка на воде), HWV 348.mp3">Сюита №1, фа мажор. V - Air (Музыка на воде)</li>
+                        <li data-src="../handel/music/Гендель- Опера Ринальдо, Ария Альмирены (музыка из фильма Антихрист Ларса Фон Триера).mp3">Опера Ринальдо, Ария Альмирены (музыка из фильма Антихрист Ларса Фон Триера)</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Гендель родился в один год с И.С. Бахом и Д. Скарлатти.</li>
+                    <li>Он написал "Мессию" всего за 24 дня.</li>
+                    <li>Композитор никогда не был женат и не имел детей.</li>
+                    <li>Гендель был одним из первых композиторов, чья музыка исполнялась после его смерти.</li>
+                    <li>Его оратория "Мессия" исполняется ежегодно во многих странах мира.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Я очень сожалел бы, если бы доставлял людям только удовольствие; моя цель — делать их лучше." - Георг Фридрих Гендель
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
