@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Александр Константинович Глазунов</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #1a5f7a, #57c5b6);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #e0e0e0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #57c5b6;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1a5f7a;
+            border-bottom: 2px solid #57c5b6;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #57c5b6;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #57c5b6;
+            border: 4px solid #f8f5f0;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #57c5b6;
+            background-color: #e0f2f1;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #57c5b6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #1a5f7a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #57c5b6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #1a5f7a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Александр Константинович Глазунов</h1>
+            <p class="subtitle">Русский композитор (1865-1936 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1865</strong> - Родился 10 августа в Петербурге.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1877-1883</strong> - Учился в Петербургском реальном училище.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1888</strong> - Начал выступать как дирижёр в России и за рубежом.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1899</strong> - Стал профессором Петербургской консерватории.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1905</strong> - Назначен директором Петербургской консерватории.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1917</strong> - Занял должность ректора Петроградской консерватории.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1928</strong> - Выехал в Вену как член жюри Международного конкурса им. Ф.Шуберта.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1936</strong> - Скончался 21 марта в Париже.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1972</strong> - Прах Глазунова перевезён в Ленинград (ныне - Санкт-Петербург).</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Александр Константинович Глазунов вырос в культурной среде и с ранних лет проявлял музыкальные способности. Уже в 13 лет он играл на фортепиано, скрипке и виолончели.</p>
+                    <p>На формирование творческих принципов Глазунова оказали влияние такие выдающиеся деятели русской музыки, как Балакирев, Бородин, Чайковский, Танеев и Стасов.</p>
+                    <p>Глазунов внес значительный вклад в развитие русской симфонической музыки, продолжая традиции "Могучей кучки" и Чайковского. Он соединил в своем творчестве лирико-эпическую и лирико-драматическую ветви русской музыки.</p>
+                    <p>После революции 1917 года Глазунов активно участвовал в строительстве советской культуры и перестройке музыкального образования.</p>
+                    <p>Композитор также внес большой вклад в сохранение и популяризацию произведений других русских композиторов, в частности, завершил оперу "Князь Игорь" Бородина и участвовал в подготовке к печати произведений Глинки.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Симфония №5 (1895)</li>
+                    <li>Балет "Раймонда" (1898)</li>
+                    <li>Концерт для скрипки с оркестром ля минор (1904)</li>
+                    <li>Симфоническая поэма "Стенька Разин" (1885)</li>
+                    <li>Балет "Времена года" (1900)</li>
+                    <li>Симфония №6 (1896)</li>
+                    <li>Концертный вальс №1 (1893)</li>
+                    <li>Симфоническая фантазия "Море" (1889)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../glazunov/images/glazunov.jpg" alt="Александр Константинович Глазунов" title="Портрет Александра Константиновича Глазунова">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../glazunov/music/02 -  глазунов зима лёд _.mp3">Зима: Лёд</li>
+                        <li data-src="../glazunov/music/04 - А.К.ГЛАЗУНОВ- МОРЕ, фантазия для большого симфонического оркестра, OP. 28.mp3">Море, фантазия для большого симфонического оркестра, op. 28</li>
+                        <li data-src="../glazunov/music/06 - Глазунов картина 1 четыре вариации иней, лёд град снег + кода.mp3">Картина 1. Четыре Вариации: Иней, Лёд, Град, Снег+Кода</li>
+                        <li data-src="../glazunov/music/06,4 глазунов снег _.mp3">Снег</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Глазунов обладал феноменальной музыкальной памятью и мог воспроизвести по памяти сложные музыкальные произведения.</li>
+                    <li>Он был одним из самых молодых профессоров Петербургской консерватории, получив это звание в 34 года.</li>
+                    <li>Глазунов записал по памяти 1-ю часть 3-й симфонии Бородина, которая считалась утерянной.</li>
+                    <li>Композитор был известен своей щедростью и часто помогал нуждающимся студентам консерватории.</li>
+                    <li>Глазунов был одним из первых русских композиторов, чья музыка получила широкое признание за рубежом еще при жизни.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Музыка - это искусство, которое ближе всего к природе и дальше всего от рутины." - Александр Константинович Глазунов
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
