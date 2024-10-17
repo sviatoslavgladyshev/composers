@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эдвард Григ</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #e0e0e0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #3498db;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2980b9;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #3498db;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #3498db;
+            border: 4px solid #f8f5f0;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            background-color: #e8f6fe;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Эдвард Григ</h1>
+            <p class="subtitle">Норвежский композитор, пианист, дирижёр (1843-1907 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1843</strong> - Родился 15 июня в Бергене, Норвегия.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1858-1862</strong> - Обучался в Лейпцигской консерватории.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1863</strong> - Стажировался в Копенгагене у композитора Н. Гаде.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1865</strong> - Написал фортепианную сонату, основанную на народных мотивах.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1866</strong> - Вернулся в Норвегию и поселился в Кристиании (ныне Осло).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1868</strong> - Создал фортепианный концерт, известный как "гимн Норвегии".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1871</strong> - Основал Музыкальное общество и Музыкальную академию в Осло.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1872</strong> - Избран членом Шведской музыкальной академии.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1876</strong> - Написал музыку к драме Г. Ибсена "Пер Гюнт".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1885</strong> - Поселился на вилле Трольхауген недалеко от Бергена.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1889</strong> - Стал членом Французской академии изящных искусств.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1893</strong> - Получил звание почётного доктора Кембриджского университета.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1906</strong> - Получил звание почётного доктора Оксфордского университета.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1907</strong> - Скончался 4 сентября в Бергене.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Эдвард Григ вырос в музыкальной семье, его мать была его первой учительницей музыки. С ранних лет он проявлял интерес к норвежскому фольклору, что впоследствии стало основой его творчества.</p>
+                    <p>Григ был не только композитором, но и талантливым пианистом и дирижёром. Он активно пропагандировал норвежскую музыку как в своей стране, так и за рубежом.</p>
+                    <p>Дружба с драматургом Бьёрнстьерне Бьёрнсоном оказала значительное влияние на творчество Грига. Он написал множество романсов на стихи Бьёрнсона и музыку к его пьесам.</p>
+                    <p>Музыка Грига к драме "Пер Гюнт" Генрика Ибсена стала одним из самых известных его произведений и принесла ему мировую славу.</p>
+                    <p>Григ внес огромный вклад в развитие норвежской музыкальной культуры, основав первое профессиональное музыкальное учебное заведение в стране.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Фортепианный концерт ля минор (1868)</li>
+                    <li>Музыка к драме "Пер Гюнт" (1876)</li>
+                    <li>"Лирические пьесы" для фортепиано (1867-1901)</li>
+                    <li>Соната для скрипки и фортепиано №3 до минор (1887)</li>
+                    <li>"Норвежские танцы" для оркестра (1881)</li>
+                    <li>"Holberg Suite" для струнного оркестра (1884)</li>
+                    <li>"Симфонические танцы" (1898)</li>
+                    <li>Романсы на стихи Г.Х. Андерсена и Б. Бьёрнсона</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../grieg/images/grieg.jpg" alt="Эдвард Григ" title="Портрет Эдварда Грига">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../grieg/music/piano-concerto.mp3">Фортепианный концерт ля минор</li>
+                        <li data-src="../grieg/music/peer-gynt-morning.mp3">Пер Гюнт: Утро</li>
+                        <li data-src="../grieg/music/lyric-pieces.mp3">Лирические пьесы: Ариетта</li>
+                        <li data-src="../grieg/music/violin-sonata.mp3">Соната для скрипки и фортепиано №3</li>
+                        <li data-src="../grieg/music/norwegian-dance.mp3">Норвежский танец №2</li>
+                        <li data-src="../grieg/music/holberg-suite.mp3">Holberg Suite: Прелюдия</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Григ был низкого роста (около 152 см) и всю жизнь страдал от проблем со здоровьем.</li>
+                    <li>Он был одним из первых композиторов, кто записал свои произведения на фонограф.</li>
+                    <li>Вилла Трольхауген, где жил Григ, сейчас является музеем композитора.</li>
+                    <li>Григ отказался от ордена Святого Олафа в знак протеста против политики Швеции по отношению к Норвегии.</li>
+                    <li>Музыка Грига вдохновила многих других композиторов, включая Клода Дебюсси и Мориса Равеля.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Художники, подобно Бетховену, достигают наивысшего; композиторы, подобные мне, должны довольствоваться тем, что находятся чуть ниже. Но и в долинах растут красивые цветы." - Эдвард Григ
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
