@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клод Дебюсси</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #16a085, #1abc9c);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #e0e0e0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #1abc9c;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #16a085;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #1abc9c;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #1abc9c;
+            border: 4px solid #f8f5f0;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #1abc9c;
+            background-color: #e8f8f5;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #1abc9c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #16a085;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #16a085;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Клод Дебюсси</h1>
+            <p class="subtitle">Французский композитор, основоположник музыкального импрессионизма (1862-1918 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1862</strong> - Родился 22 августа близ Парижа.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1870</strong> - Начал брать первые уроки фортепиано.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1872</strong> - В 10-летнем возрасте поступил в Парижскую консерваторию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1894</strong> - Создал прелюдию "Послеполуденный отдых фавна".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1902</strong> - Премьера оперы "Пеллеас и Мелизанда".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1905</strong> - Написал симфонические эскизы "Море".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1918</strong> - Скончался 25 марта в Париже.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Клод Дебюсси считается основоположником музыкального импрессионизма. В своем творчестве он опирался на французские музыкальные традиции, включая музыку клавесинистов, лирическую оперу и романсы.</p>
+                    <p>На формирование стиля Дебюсси значительное влияние оказала русская музыка, а также французская символистская поэзия и импрессионистская живопись. Композитор стремился воплотить в музыке мимолетные впечатления, тончайшие оттенки человеческих эмоций и явлений природы.</p>
+                    <p>Дебюсси обогатил средства музыкальной выразительности, создав уникальную импрессионистическую мелодику, отличающуюся гибкостью нюансов и одновременно некоторой расплывчатостью. Он также внес значительный вклад в развитие оркестровой и фортепианной палитры.</p>
+                    <p>Творчество Дебюсси оказало существенное влияние на композиторов многих стран и считается одним из важнейших явлений в музыке 20 века.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>"Послеполуденный отдых фавна" (1894)</li>
+                    <li>Опера "Пеллеас и Мелизанда" (1902)</li>
+                    <li>Симфонические эскизы "Море" (1905)</li>
+                    <li>"Ноктюрны" для оркестра (1899)</li>
+                    <li>"Образы" для фортепиано (1905-1907)</li>
+                    <li>"Прелюдии" для фортепиано (1910-1913)</li>
+                    <li>Балет "Игры" (1913)</li>
+                    <li>"Детский уголок" для фортепиано (1908)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../debussy/images/debussy.jpg" alt="Клод Дебюсси" title="Портрет Клода Дебюсси">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../debussy/music/01-doctor_gradus_ad_parnassum.mp3">Doctor Gradus ad Parnassum</li>
+                        <li data-src="../debussy/music/02 - К. Дебюсси симфоническая сюита Море.mp3">Симфоническая Сюита Море</li>
+                        <li data-src="../debussy/music/02-jimbos_lullaby.mp3">Колыбельная Джимбо</li>
+                        <li data-src="../debussy/music/дебюсси лунный свет Clair De Lune - Клод Дебюсси  (audiopoisk.com).mp3">Лунный свет</li>
+                        <li data-src="../debussy/music/03 - Debyussi_-_Arabeska_1..mp3">Арабеска №1</li>
+                        <li data-src="../debussy/music/03-serenade_for_a_doll.mp3">Детский уголок: Серенада Кукле</li>
+                        <li data-src="../debussy/music/04-the_snow_is_dancing.mp3">Детский уголок: Снег Танцует</li>
+                        <li data-src="../debussy/music/05-the_little_shepperd.mp3">Маленький Пастух</li>
+                        <li data-src="../debussy/music/06-golliwogs_cakewalk.mp3">Детский уголок: Прогулка Голливога</li>
+                        <li data-src="../debussy/music/Klod_Debyussi_-_Arabesk_No.2_Allegretto_scherzando_Paul_Crossley_-_piano_(iPlayer.fm).mp3">Арабеска №2</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Дебюсси не любил, когда его называли импрессионистом, предпочитая термин "символист".</li>
+                    <li>Он был страстным любителем японского искусства и коллекционировал японские гравюры.</li>
+                    <li>Дебюсси был одним из первых композиторов, кто использовал целотоновую гамму в своих произведениях.</li>
+                    <li>Его опера "Пеллеас и Мелизанда" - единственная завершенная опера композитора.</li>
+                    <li>Дебюсси умер во время Первой мировой войны, когда немецкие войска бомбардировали Париж.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Музыка - это искусство, наиболее близкое к природе. Она не выражает это в деталях, но только в общих чертах. В этом ее сила и слабость." - Клод Дебюсси
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
