@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сергей Сергеевич Прокофьев</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f0fff4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2c7a7b, #38b2ac);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #e6fffa;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #b2f5ea;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #38b2ac;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2c7a7b;
+            border-bottom: 2px solid #38b2ac;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #38b2ac;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #38b2ac;
+            border: 4px solid #f0fff4;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #38b2ac;
+            background-color: #e6fffa;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #38b2ac;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #2c7a7b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #38b2ac;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #2c7a7b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Сергей Сергеевич Прокофьев</h1>
+            <p class="subtitle">Российский композитор, пианист, дирижёр (1891-1953 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1891</strong> - Родился 23 апреля в имении Солнцевка (ныне село Красное) Донецкой области.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1904</strong> - Поступил в Петербургскую консерваторию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1909</strong> - Окончил консерваторию как композитор.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1914</strong> - Блестяще окончил консерваторию как пианист, получив премию Антона Рубинштейна.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1917</strong> - Написал Первую ("Классическую") симфонию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1918-1933</strong> - Жил и работал в Америке.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1936</strong> - Создал балет "Ромео и Джульетта".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1953</strong> - Скончался 5 марта в Москве.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Прокофьев был одним из самых значительных композиторов XX века, внесшим огромный вклад в развитие музыкального искусства.</p>
+                    <p>Его творчество охватывает различные жанры: от опер и балетов до симфоний и концертов. Прокофьев также известен своей музыкой к кинофильмам, в том числе к фильмам Сергея Эйзенштейна.</p>
+                    <p>Стиль Прокофьева отличается яркой образностью, динамизмом, острой ритмикой и оригинальной гармонией. Он умело сочетал классические традиции с новаторскими идеями.</p>
+                    <p>Прокофьев был не только композитором, но и выдающимся пианистом, часто исполнявшим собственные произведения.</p>
+                    <p>Несмотря на годы, проведенные за границей, Прокофьев всегда оставался глубоко русским композитором, черпавшим вдохновение в родной культуре.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Опера "Игрок" (1916)</li>
+                    <li>Опера "Любовь к трём апельсинам" (1919)</li>
+                    <li>Балет "Ромео и Джульетта" (1936)</li>
+                    <li>Балет "Золушка" (1944)</li>
+                    <li>Опера "Война и мир" (1943)</li>
+                    <li>Симфония №1 "Классическая" (1917)</li>
+                    <li>Пять концертов для фортепиано с оркестром</li>
+                    <li>Кантата "Александр Невский" (1939)</li>
+                    <li>Сюита "Поручик Киже" (1933)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../images/prokofiev.jpg" alt="Сергей Сергеевич Прокофьев" title="Портрет Сергея Сергеевича Прокофьева">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../music/prokofiev_romeo_and_juliet.mp3">Ромео и Джульетта: Танец рыцарей</li>
+                        <li data-src="../music/prokofiev_peter_and_the_wolf.mp3">Петя и волк</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Прокофьев начал сочинять музыку в возрасте пяти лет.</li>
+                    <li>Он был шахматистом-любителем и даже сыграл вничью с будущим чемпионом мира Хосе Раулем Капабланкой.</li>
+                    <li>Прокофьев умер в один день со Сталиным, из-за чего его смерть осталась практически незамеченной.</li>
+                    <li>Его балет "Ромео и Джульетта" изначально имел счастливый конец, но был изменен по настоянию театра.</li>
+                    <li>Прокофьев был одним из первых композиторов, написавших музыку специально для детей ("Петя и волк").</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Чтобы быть композитором, нужно не только найти мелодию, но и быть сильным человеком." - Сергей Прокофьев
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
