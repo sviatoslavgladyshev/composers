@@ -196,6 +196,19 @@
                 order: -1;
             }
         }
+        .video-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .video-player video {
+            width: 100%;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -265,13 +278,28 @@
                 <div class="photo">
                     <img src="../prokofiev/images/prokofiev.jpg" alt="Сергей Сергеевич Прокофьев" title="Портрет Сергея Сергеевича Прокофьева">
                 </div>
+                <div class="video-player">
+                    <video controls>
+                        <source src="../prokofiev/video/С Прокофьев Болтунья. Исп. Мария Курочкина.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
                 <div class="music-player">
                     <audio id="audio-player" class="audio-player" controls>
                         Your browser does not support the audio element.
                     </audio>
                     <ul class="playlist" id="playlist">
-                        <li data-src="../music/prokofiev_romeo_and_juliet.mp3">Ромео и Джульетта: Танец рыцарей</li>
-                        <li data-src="../music/prokofiev_peter_and_the_wolf.mp3">Петя и волк</li>
+                        <li data-src="../prokofiev/music/02 - С. Прокофьев.Золушка.Вступление.  (audiopoisk.com).mp3">Золушка. Вступление</li>
+                        <li data-src="../prokofiev/music/03 - марш - шествие петя и волк прокофьева.mp3">Марш-шествие. Петя и волк</li>
+                        <li data-src="../prokofiev/music/03 - Прокофьев Ария Кутузова из оп _Война и мир_.mp3">Ария Кутузова из оперы "Война и мир"</li>
+                        <li data-src="../prokofiev/music/03 - Прокофьев Отъезд из сюиты Зимний костёр..mp3">Отъезд из сюиты Зимний костёр</li>
+                        <li data-src="../prokofiev/music/04 - Прокофьев Кантата _Александр Невский_. Вставайте, люди русские.mp3">Кантата "Александр Невский". Вставайте, люди русские</li>
+                        <li data-src="../prokofiev/music/07 -  Сергей Прокофьев - .Марш   (audiopoisk.com) - копия.mp3">Марш</li>
+                        <li data-src="../prokofiev/music/Балет Сергея Прокофьева «Сказ о каменном цветке»..mp3">Балет "Сказ о каменном цветке"</li>
+                        <li data-src="../prokofiev/music/марш монтекки и капулетти прокофьев.mp3">марш Монтекки и Капулетти</li>
+                        <li data-src="../prokofiev/music/Прокофьев - Мимолетности 5 Нейгауз_(Audio-VK4.ru).mp3">Мимолетности №5</li>
+                        <li data-src="../prokofiev/music/Прокофьев Седьмая симфония 1ч. ПП.mp3">Симфония №7</li>
+                        <li data-src="../prokofiev/music/С.Прокофьев - Мертвое поле (кантата ,,Александр Невский,,)Без названия_(MP3Ball.ru).mp3">Мертвое поле. Кантата "Александр Невский"</li>
                     </ul>
                 </div>
                 <h2>Интересные факты</h2>
