@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Антонио Вивальди</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #fff5e6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #d35400, #e67e22);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #e5e7eb;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #d1d5db;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #e67e22;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #d35400;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e67e22;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #e67e22;
+            border: 4px solid #fff5e6;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #e67e22;
+            background-color: #e5e7eb;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #e67e22;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Антонио Вивальди</h1>
+            <p class="subtitle">Итальянский композитор, скрипач-виртуоз, педагог (1678-1741)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1678</strong> - Родился 4 марта в Венеции.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1689</strong> - В 11 лет мог заменять отца в капелле собора Св. Марка.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1704</strong> - Был рукоположен в священники.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1705</strong> - Опубликовал свои первые двенадцать сонат.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1713</strong> - Создал свою первую оперу "Оттон на вилле".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1718</strong> - Переехал в Мантую, стал капельмейстером при дворе князя Ф. Гессен-Дармштадт.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1725</strong> - Издал цикл "Искус гармонии и инвенции", включающий "Времена года".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1740</strong> - Прибыл в Вену для постановки своих опер.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1741</strong> - Скончался в июле в Вене.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Вивальди был не только выдающимся композитором, но и виртуозным скрипачом.</p>
+                    <p>Он внес огромный вклад в развитие жанра концерта, особенно сольного инструментального концерта.</p>
+                    <p>Вивальди был одним из первых композиторов, использовавших программную музыку, особенно в цикле "Времена года".</p>
+                    <p>Его музыка оказала значительное влияние на многих композиторов, включая Иоганна Себастьяна Баха.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>"Времена года" (цикл из четырех скрипичных концертов)</li>
+                    <li>"Оттон на вилле" (опера)</li>
+                    <li>"Мнимый безумец" (опера)</li>
+                    <li>"Скандербег" (опера)</li>
+                    <li>"Искус гармонии и инвенции" (сборник концертов)</li>
+                    <li>Более 500 концертов для различных инструментов</li>
+                    <li>Около 50 опер</li>
+                    <li>Многочисленные сонаты и камерные произведения</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../vivaldi/images/vivaldi.jpg" alt="Антонио Вивальди" title="Портрет Антонио Вивальди">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../vivaldi/music/Four_Seasons_Spring.mp3">Времена года: Весна (1-я часть)</li>
+                        <li data-src="../vivaldi/music/Gloria.mp3">Gloria in D major (фрагмент)</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Вивальди имел прозвище "Рыжий священник" из-за цвета волос.</li>
+                    <li>Он страдал от бронхиальной астмы, что мешало ему служить мессу.</li>
+                    <li>Вивальди написал более 500 концертов для различных инструментов.</li>
+                    <li>Его музыка была почти забыта после смерти и вновь открыта только в 20 веке.</li>
+                    <li>Вивальди был одним из первых композиторов, писавших концерты для мандолины.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Моя музыка не предназначена для тех, кто боится переступить пределы обычного." - Антонио Вивальди
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
