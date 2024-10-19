@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сергей Васильевич Рахманинов</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #fff5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #742a2a, #9b2c2c);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #feeaea;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #fcd5d5;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #9b2c2c;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #742a2a;
+            border-bottom: 2px solid #9b2c2c;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #9b2c2c;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #9b2c2c;
+            border: 4px solid #fff5f5;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #9b2c2c;
+            background-color: #feeaea;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #9b2c2c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #742a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #9b2c2c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #742a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Сергей Васильевич Рахманинов</h1>
+            <p class="subtitle">Русский композитор, дирижер, пианист (1873-1943 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1873</strong> - Родился 20 марта (1 апреля) в Новгородской губернии.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1882</strong> - Поступил в Петербургскую консерваторию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1885</strong> - Перевелся в Московскую консерваторию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1891</strong> - Создал 1-й фортепианный концерт.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1893</strong> - Окончил Московскую консерваторию с золотой медалью.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1901</strong> - Завершил 2-й фортепианный концерт.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1909</strong> - Создал 3-й фортепианный концерт.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1917</strong> - Покинул Россию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1941</strong> - Закончил "Симфонические танцы".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1943</strong> - Скончался 28 марта в Беверли-Хиллз, США.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Рахманинов был не только выдающимся композитором, но и виртуозным пианистом. Его исполнительское мастерство высоко ценилось современниками.</p>
+                    <p>Творчество Рахманинова относят к направлениям символизма и неоромантизма в музыке. Он умело объединил в своих произведениях принципы петербургской и московской композиторских школ.</p>
+                    <p>После революции 1917 года Рахманинов эмигрировал и большую часть жизни провел за границей, главным образом в США. Несмотря на это, он всегда оставался русским композитором по духу и стилю своей музыки.</p>
+                    <p>Рахманинов был близким другом певца Федора Шаляпина, с которым познакомился во время работы в Московской русской частной опере.</p>
+                    <p>Композитор пережил серьезный творческий кризис после неудачной премьеры своей 1-й симфонии, но сумел преодолеть его и создать ряд выдающихся произведений, в том числе знаменитый 2-й фортепианный концерт.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Концерт для фортепиано с оркестром №2 до минор, op. 18 (1901)</li>
+                    <li>Концерт для фортепиано с оркестром №3 ре минор, op. 30 (1909)</li>
+                    <li>"Всенощное бдение", op. 37 (1915)</li>
+                    <li>"Симфонические танцы", op. 45 (1941)</li>
+                    <li>Прелюдия до-диез минор, op. 3 №2 (1892)</li>
+                    <li>Симфония №2 ми минор, op. 27 (1907)</li>
+                    <li>Рапсодия на тему Паганини, op. 43 (1934)</li>
+                    <li>Романс "Весенние воды", op. 14 №11 (1896)</li>
+                    <li>Этюды-картины, op. 33 и 39 (1911, 1917)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../rachmaninoff/images/rachmaninoff.jpg" alt="Сергей Васильевич Рахманинов" title="Портрет Сергея Васильевича Рахманинова">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../rachmaninoff/music/01 - Рахманинов - Piano Concerto No. 2, i Moderato (mp3ostrov.com).mp3">Концерт для фортепиано №2, I часть</li>
+                        <li data-src="../rachmaninoff/music/08 - Сергей Рахманинов - Прелюдия до диез минор (mp3ostrov.com).mp3">Прелюдия до-диез минор</li>
+                        <li data-src="../rachmaninoff/music/01.2- Ирина Архипова - Сергей Рахманинов - Сирень.mp3">Сирень</li>
+                        <li data-src="../rachmaninoff/music/02 - рахманинов Концерт №3 - 1 часть.mp3">Концерт №3, I часть</li>
+                        <li data-src="../rachmaninoff/music/06- РАХМАНИНОВ - концерт № 3 ( 2-я часть) - Исп.С.В.Рахманинов.mp3">Концерт №3, II часть (исп. С.В.Рахманинов)</li>
+                        <li data-src="../rachmaninoff/music/02 -- Рахманинов+Вокализ оркестр .mp3">Рахманинов. Вокализ</li>
+                        <li data-src="../rachmaninoff/music/03 - С. Рахманинов. Богородице Дево, радуйся!.mp3">Богородице Дево, радуйся!</li>
+                        <li data-src="../rachmaninoff/music/05 - Рахманинов - Итальянская полька  (audiopoisk.com).mp3">Итальянская полька</li>
+                        <li data-src="../rachmaninoff/music/09 - Весна_ - Здесь хорошо (С.В. Рахманинов, Г. А. Галина).mp3">Кантата Весна. Здесь хорошо</li>
+                        <li data-src="../rachmaninoff/music/12 - рапсодия на тему паганнини рахманинов 23-С.mp3">Рапсодия на тему паганнини</li>
+                        <li data-src="../rachmaninoff/music/Рахманинов С.В. - Фрагмент из кантаты _Весна_.mp3">Фрагмент из кантаты Весна</li>
+                        <li data-src="../rachmaninoff/music/С.В.РАХМАНИНОВ. Весна. - часть 1 ( Charles Dutoit, Philadelphia Orch., Sergey Leiferkus).mp3">Кантата Весна. Часть I</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Рахманинов обладал огромными руками, что позволяло ему исполнять сложнейшие пассажи.</li>
+                    <li>Он был одним из первых композиторов, кто записал свои произведения на фонограф.</li>
+                    <li>Рахманинов был страстным автолюбителем и коллекционером.</li>
+                    <li>Его 2-й фортепианный концерт был написан после преодоления серьезной депрессии.</li>
+                    <li>Композитор никогда не переставал тосковать по России, даже став успешным в США.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Музыка — это калейдоскоп чувств и впечатлений. Она должна идти от сердца и быть обращена к сердцу." - Сергей Рахманинов
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
