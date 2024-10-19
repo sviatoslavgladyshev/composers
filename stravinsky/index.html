@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игорь Фёдорович Стравинский</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #e2e8f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #cbd5e0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #4a5568;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2d3748;
+            border-bottom: 2px solid #4a5568;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #4a5568;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #4a5568;
+            border: 4px solid #f0f4f8;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #4a5568;
+            background-color: #e2e8f0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #4a5568;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #2d3748;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #4a5568;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #2d3748;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Игорь Фёдорович Стравинский</h1>
+            <p class="subtitle">Российский и американский композитор (1882-1971 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1882</strong> - Родился 17 июня в Ораниенбауме (ныне город Ломоносов).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1900</strong> - Поступил на юридический факультет Петербургского университета.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1903</strong> - Начал брать уроки у Н.А. Римского-Корсакова.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1910</strong> - Написал свой первый балет "Жар-птица".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1913</strong> - Создал балет "Весна священная".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1914</strong> - Покинул Россию, переехал в Швейцарию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1920</strong> - Переехал во Францию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1939</strong> - Эмигрировал в США.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1945</strong> - Создал "Чёрный концерт для кларнета и джаз-банда".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1971</strong> - Скончался 6 апреля в Нью-Йорке.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Стравинский считается одним из самых влиятельных композиторов 20 века, известным своими новаторскими подходами к музыкальной композиции.</p>
+                    <p>Его творчество охватывает различные стили и периоды, от русского национализма ранних работ до неоклассицизма и сериализма поздних произведений.</p>
+                    <p>Стравинский сотрудничал с многими выдающимися артистами своего времени, включая Сергея Дягилева и балетмейстера Михаила Фокина.</p>
+                    <p>Его музыка оказала огромное влияние на развитие современной классической музыки и балета.</p>
+                    <p>Стравинский был не только композитором, но и талантливым пианистом и дирижером, часто исполнявшим собственные произведения.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Балет "Жар-птица" (1910)</li>
+                    <li>Балет "Петрушка" (1911)</li>
+                    <li>Балет "Весна священная" (1913)</li>
+                    <li>Опера "Соловей" (1914)</li>
+                    <li>Опера "Мавра" (1922)</li>
+                    <li>Опера-оратория "Царь Эдип" (1927)</li>
+                    <li>"Симфония в трех движениях" (1945)</li>
+                    <li>"Чёрный концерт для кларнета и джаз-банда" (1945)</li>
+                    <li>Балет "Агон" (1957)</li>
+                    <li>"Реквием" (1966)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../images/stravinsky.jpg" alt="Игорь Фёдорович Стравинский" title="Портрет Игоря Фёдоровича Стравинского">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../music/stravinsky_firebird.mp3">Жар-птица: Финал</li>
+                        <li data-src="../music/stravinsky_rite_of_spring.mp3">Весна священная: Вступление</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Стравинский изначально планировал стать юристом, а не музыкантом.</li>
+                    <li>Премьера "Весны священной" вызвала скандал и чуть не закончилась потасовкой в зале.</li>
+                    <li>Он был близким другом Пабло Пикассо, который нарисовал его портрет.</li>
+                    <li>Стравинский получил звезду на Голливудской "Аллее славы" за свой вклад в музыку.</li>
+                    <li>Он был полиглотом и свободно говорил на русском, французском, английском, итальянском и немецком языках.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Музыка лучше всего выражает себя, когда она не стремится что-либо выражать." - Игорь Стравинский
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
