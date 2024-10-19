@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арам Ильич Хачатурян</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f3e8;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #e5e7eb;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #d1d5db;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #9b59b6;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #8e44ad;
+            border-bottom: 2px solid #9b59b6;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #9b59b6;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #9b59b6;
+            border: 4px solid #f9f3e8;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #9b59b6;
+            background-color: #e5e7eb;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #9b59b6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #8e44ad;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #8e44ad;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Арам Ильич Хачатурян</h1>
+            <p class="subtitle">Советский композитор, дирижёр, педагог, музыкально-общественный деятель (1903-1978)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1903</strong> - Родился 6 июня в Тифлисе (ныне Тбилиси) в семье переплётчика.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1921</strong> - Переехал в Москву в возрасте 18 лет.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1929</strong> - Окончил Музыкальное училище имени Гнесиных по классу композиции М. Ф. Гнесина.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1934</strong> - Окончил Московскую консерваторию по классу композиции Н. Я. Мясковского. Написал Первую симфонию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1936</strong> - Создал Фортепианный концерт.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1942</strong> - Переработал балет "Счастье" в "Гаянэ", включив знаменитый "Танец с саблями".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1950</strong> - Начал преподавать в Музыкально-педагогическом институте имени Гнесиных.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1954</strong> - Получил звание народного артиста СССР. Закончил балет "Спартак".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1978</strong> - Скончался 1 мая в Москве.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Хачатурян был одним из самых выдающихся композиторов XX века, чье творчество внесло значительный вклад в развитие советской и мировой музыки.</p>
+                    <p>Его музыка отличается яркостью и самобытностью, она насыщена национальными мелодиями Закавказья, переработанными в классические формы.</p>
+                    <p>Хачатурян был не только композитором, но и талантливым педагогом, воспитавшим целую плеяду известных музыкантов.</p>
+                    <p>Его произведения исполняются по всему миру и продолжают вдохновлять новые поколения музыкантов и слушателей.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Первая симфония (1934)</li>
+                    <li>Фортепианный концерт (1936)</li>
+                    <li>Балет "Гаянэ" (1942), включая "Танец с саблями"</li>
+                    <li>Вторая симфония (1943)</li>
+                    <li>Государственный гимн Армянской ССР (1944)</li>
+                    <li>Виолончельный концерт (1946)</li>
+                    <li>Третья симфония (1947)</li>
+                    <li>Балет "Спартак" (1954)</li>
+                    <li>Скрипичный концерт-рапсодия (1961)</li>
+                    <li>Виолончельный концерт-рапсодия (1963)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../khachaturian/images/khachaturian.jpg" alt="Арам Ильич Хачатурян" title="Портрет Арама Ильича Хачатуряна">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../khachaturian/music/03 - А. Хачатурян - Концерт для скрипки с оркестром ре минор. I часть (скрипка - Леонид Коган).mp3">Концерт для скрипки с оркестром ре минор. I часть (скрипка - Леонид Коган)</li>
+                        <li data-src="../khachaturian/music/07 - лезгинка гаянэ хачатурян Aram_Hachaturyan_-_Lezginka_Balet_Gayane__(get-tune.net).mp3">Лезгинка Гаянэ</li>
+                        <li data-src="../khachaturian/music/08 - вальс дружбы хачатурян Ol_ga-Pirags-Val_s-druzhby-AHachaturyan---GRublev(muzofon.com).mp3">Вальс Дружбы</li>
+                        <li data-src="../khachaturian/music/вальс хачатуряна из балета маскарад.mp3">Маскарад: Вальс</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>"Танец с саблями" из балета "Гаянэ" стал одним из самых узнаваемых произведений классической музыки XX века.</li>
+                    <li>Хачатурян был первым композитором, удостоенным Ленинской премии (1959).</li>
+                    <li>Он был избран почётным членом Национальной академии Санта-Чечилия в Риме и почётным профессором Мексиканской консерватории.</li>
+                    <li>Хачатурян начал серьёзно заниматься музыкой только в 19 лет, что считается довольно поздним началом для профессионального композитора.</li>
+                    <li>Его музыка часто используется в кинематографе и на телевидении, в том числе в фильмах Стэнли Кубрика.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Я не пишу музыку, я рисую её." - Арам Хачатурян
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
