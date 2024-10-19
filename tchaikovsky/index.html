@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пётр Ильич Чайковский</title>
+    <link rel="icon" href="../images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f2ef;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #6b4226, #a0522d);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0e6e0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #e6d0c0;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #a0522d;
+            color: white;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #6b4226;
+            border-bottom: 2px solid #a0522d;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #a0522d;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #a0522d;
+            border: 4px solid #f7f2ef;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #a0522d;
+            background-color: #f0e6e0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #a0522d;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #6b4226;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #readMoreBtn {
+            background-color: #a0522d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        #readMoreBtn:hover {
+            background-color: #6b4226;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Пётр Ильич Чайковский</h1>
+            <p class="subtitle">Русский композитор, дирижёр, педагог (1840-1893 гг.)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1840</strong> - Родился 7 мая в селении при Камско-Воткинском заводе (ныне город Воткинск, Удмуртия).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1850</strong> - Семья переехала в Петербург, поступил в Училище правоведения.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1859</strong> - Окончил Училище правоведения, начал работу в Министерстве юстиции.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1862</strong> - Поступил в Петербургскую консерваторию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1866</strong> - Окончил консерваторию, стал профессором Московской консерватории. Написал Первую симфонию.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1876</strong> - Создал балет "Лебединое озеро".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1878</strong> - Написал оперу "Евгений Онегин".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1890</strong> - Создал оперу "Пиковая дама".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1893</strong> - Написал Шестую симфонию. Скончался 6 ноября в Петербурге.</p>
+                    </div>
+                </div>
+                
+                <div id="additionalInfo" class="hidden">
+                    <p>Чайковский является одним из самых известных композиторов в истории музыки. Его творчество охватывает практически все музыкальные жанры того времени.</p>
+                    <p>Он внес значительный вклад в развитие симфонической музыки, оперы и балета. Его балеты "Лебединое озеро", "Спящая красавица" и "Щелкунчик" стали классикой мирового балетного репертуара.</p>
+                    <p>Чайковский также известен своими романсами и фортепианными произведениями. Его цикл "Времена года" и "Детский альбом" популярны среди пианистов всего мира.</p>
+                    <p>Композитор много путешествовал и дирижировал своими произведениями в разных странах, что способствовало росту его международной известности.</p>
+                    <p>Музыка Чайковского отличается глубокой эмоциональностью, мелодичностью и мастерством оркестровки. Она оказала огромное влияние на развитие русской и мировой музыкальной культуры.</p>
+                </div>
+                
+                <button id="readMoreBtn">Читать больше</button>
+                
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>Опера "Евгений Онегин" (1878)</li>
+                    <li>Опера "Пиковая дама" (1890)</li>
+                    <li>Балет "Лебединое озеро" (1876)</li>
+                    <li>Балет "Спящая красавица" (1889)</li>
+                    <li>Балет "Щелкунчик" (1892)</li>
+                    <li>Симфония №6 "Патетическая" (1893)</li>
+                    <li>Концерт для фортепиано с оркестром №1 (1875)</li>
+                    <li>Увертюра-фантазия "Ромео и Джульетта" (1869)</li>
+                    <li>Цикл "Времена года" (1876)</li>
+                    <li>"Детский альбом" (1878)</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../tchaikovsky/images/tchaikovsky.jpg" alt="Пётр Ильич Чайковский" title="Портрет Петра Ильича Чайковского">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../tchaikovsky/music/01 - увертюра пиковая дама чайковский.mp3">Пиковая Дама: Увертюра</li>
+                        <li data-src="../tchaikovsky/music/01 марш солдатиков чайковский.mp3">Марш солдатиков</li>
+                        <li data-src="../tchaikovsky/music/02 - Баба-Яга чайковский.mp3">Баба-Яга</li>
+                        <li data-src="../tchaikovsky/music/02 - интродукция чайковский спящая красавица.mp3">Спящая Красавица: Интродукция</li>
+                        <li data-src="../tchaikovsky/music/02 - Чайковский - Вальс цветов (Щелкунчик).mp3">Щелкунчик: Вальс Цветов</li>
+                        <li data-src="../tchaikovsky/music/03 - Камаринская Чайковский.mp3">Камаринская</li>
+                        <li data-src="../tchaikovsky/music/05  - П.И.Чайковский — Симфония №4, 2 часть (www.lightaudio.ru) (1).mp3">Симфония №4, 2 часть</li>
+                        <li data-src="../tchaikovsky/music/05 - П. Чайковский. Мазурка..mp3">Мазурка</li>
+                        <li data-src="../tchaikovsky/music/05,1 - Чайковский - ALLEGRO NON TROPPO 1 концерт 1 часть (mp3ostrov.com).mp3">Концерт №1, 1 часть</li>
+                        <li data-src="../tchaikovsky/music/06 - Чайковский - Вальс 'Спящая красавица'  (audiopoisk.com).mp3">Спящая Красавица: Вальс</li>
+                        <li data-src="../tchaikovsky/music/06.Июнь - Баркарола чайковский.mp3">Баркарола</li>
+                        <li data-src="../tchaikovsky/music/08 - Па-де-де-Голубой-птицы-и-принцессы-Флорин,-интродукция спящая красавица чайковский.mp3">Спящая Красавица: Па-де-де Голубой птицы и принцессы Флорин,интродукция</li>
+                        <li data-src="../tchaikovsky/music/12 - .Мужик на гармонике играет чайковский.mp3">Мужик на гармонике играет</li>
+                        <li data-src="../tchaikovsky/music/14 - чайковский Зимнее утро.mp3">Зимнее Утро</li>
+                        <li data-src="../tchaikovsky/music/16. КЛАССИКА_--_П.И.Чайковский__-_танец_феи_Драже(Щелкунчик)_(mp3ostrov.com).mp3">Щелкунчик: Танец Феи Драже</li>
+                        <li data-src="../tchaikovsky/music/18- Чайковский - Танец пастушков (Щелкунчик).mp3">Щелкунчик: Танец пастушков</li>
+                        <li data-src="../tchaikovsky/music/19 - Чайковский - Чай. Китайский танец (Щелкунчик).mp3">Щелкунчик: Чай. Китайский танец</li>
+                        <li data-src="../tchaikovsky/music/П.И.Чайковский - «Лебединое озеро». па-де-де (www.hotplayer.ru).mp3">Лебединое озеро: Па-де-де</li>
+                        <li data-src="../tchaikovsky/music/П.Чайковский ,балет Щелкунчик.Марш.mp3">Щелкунчик: Марш</li>
+                        <li data-src="../tchaikovsky/music/Чайковский - Плещеев. Осень. Поет С. Лемешев.mp3">Плещеев. Осень (поет С. Лемешев)</li>
+                    </ul>
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Чайковский начал сочинять музыку в возрасте 4 лет.</li>
+                    <li>Он был первым русским композитором, чья музыка приобрела всемирную известность при жизни.</li>
+                    <li>Чайковский страдал от сильной депрессии и различных фобий.</li>
+                    <li>Его Первый фортепианный концерт изначально был отвергнут пианистом Николаем Рубинштейном, но позже стал одним из самых популярных концертов в мире.</li>
+                    <li>Чайковский был удостоен почетной степени доктора музыки Кембриджского университета.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "Вдохновение — это такая гостья, которая не любит посещать ленивых." - Пётр Чайковский
+        </div>
+        
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+
+    <script>
+        document.getElementById('readMoreBtn').addEventListener('click', function() {
+            var additionalInfo = document.getElementById('additionalInfo');
+            var btn = document.getElementById('readMoreBtn');
+            
+            if (additionalInfo.classList.contains('hidden')) {
+                additionalInfo.classList.remove('hidden');
+                btn.textContent = 'Скрыть';
+            } else {
+                additionalInfo.classList.add('hidden');
+                btn.textContent = 'Читать больше';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
