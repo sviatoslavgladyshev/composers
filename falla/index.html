@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мануэль де Фалья</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sidebar {
+            flex: 0 0 350px;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e74c3c;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #e74c3c;
+            border: 4px solid #f8f5f0;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #e74c3c;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 5px solid #e74c3c;
+            background-color: #f8e5e4;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 24px;
+            background-color: #e74c3c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Мануэль де Фалья</h1>
+            <p class="subtitle">Крупнейший испанский композитор XX века</p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="main-info">
+                <h2>Биография</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p><strong>1876</strong> - Родился 25 ноября в Кадисе.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1905</strong> - Победа на конкурсе одноактных опер.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1914</strong> - Возвращение в Мадрид, создание балета "Любовь-волшебница".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1919</strong> - Работа над "Ночами в садах Испании".</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1939</strong> - Уезжает в Аргентину.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p><strong>1946</strong> - Скончался 14 ноября в Альта-Грасия, Аргентина.</p>
+                    </div>
+                </div>
+                <h2>Известные произведения</h2>
+                <ul>
+                    <li>"Любовь-волшебница" (балет)</li>
+                    <li>"Треуголка" (балет)</li>
+                    <li>"Ночи в садах Испании" (симфонические впечатления)</li>
+                    <li>"Балаганчик маэстро Педро" (1922)</li>
+                </ul>
+            </div>
+            <div class="sidebar">
+                <div class="photo">
+                    <img src="../falla/images/falla.jpg" alt="Мануэль де Фалья">
+                </div>
+                <h2>Интересные факты</h2>
+                <ul>
+                    <li>Фалья активно популяризировал народную музыку Испании.</li>
+                    <li>Был близким другом Федерико Гарсиа Лорки.</li>
+                    <li>Придерживался строгих национальных традиций в музыке.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="quote">
+            "Фалья — поэт в музыке, а Лорка — музыкант в поэзии."
+        </div>
+        <a href="../" class="back-button">Вернуться к списку композиторов</a>
+    </div>
+</body>
+</html>
