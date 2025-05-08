@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мануэль де Фалья</title>
+    <link rel="icon" href="../images/logo.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -52,11 +53,55 @@
         .sidebar {
             flex: 0 0 350px;
         }
+        .photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
         .photo img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+        .music-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
             border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f8e5e4;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .playlist li:hover {
+            background-color: #f4d0cf;
+            transform: translateX(5px);
+        }
+        .playlist li.active {
+            background-color: #e74c3c;
+            color: white;
         }
         .timeline {
             position: relative;
@@ -101,6 +146,8 @@
             padding: 20px;
             border-left: 5px solid #e74c3c;
             background-color: #f8e5e4;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
         }
         .back-button {
             display: inline-block;
@@ -117,6 +164,8 @@
         }
         .back-button:hover {
             background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         @media (max-width: 768px) {
             .content {
@@ -169,7 +218,21 @@
             </div>
             <div class="sidebar">
                 <div class="photo">
-                    <img src="../falla/images/falla.jpg" alt="Мануэль де Фалья">
+                    <img src="../falla/images/falla.jpg" alt="Мануэль де Фалья" title="Портрет Мануэля де Фалья">
+                </div>
+                <div class="music-player">
+                    <audio id="audio-player" class="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <ul class="playlist" id="playlist">
+                        <li data-src="../falla/music/daniil-shafran-cancion-manuel-de-fal-ya.mp3">Кансьон</li>
+                        <li data-src="../falla/music/daniil-shafran-jota-manuel-de-fal-ya.mp3">Хота</li>
+                        <li data-src="../falla/music/daniil-shafran-polo-manuel-de-fal-ya.mp3">Поло</li>
+                        <li data-src="../falla/music/manuel-de-fal-ya-farruka-isp-sergey-il-in.mp3">Фаррука</li>
+                        <li data-src="../falla/music/manuel-de-fal-ya-ispanskiy-tanec.mp3">Испанский танец</li>
+                        <li data-src="../falla/music/manuel-de-fal-ya-tanec-iz-baleta-treugolka.mp3">Танец (из балета "Треуголка")</li>
+                        <li data-src="../falla/music/manuel-de-fal-ya-tanec-ognya-iz-baleta-lyubov--volshebnica.mp3">Танец огня (из балета "Любовь-волшебница")</li>
+                    </ul>
                 </div>
                 <h2>Интересные факты</h2>
                 <ul>
@@ -184,5 +247,41 @@
         </div>
         <a href="../" class="back-button">Вернуться к списку композиторов</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+            const playlistItems = playlist.getElementsByTagName('li');
+
+            function playTrack(track) {
+                audioPlayer.src = track.getAttribute('data-src');
+                audioPlayer.play();
+                track.classList.add('active');
+            }
+
+            function removeActiveClass() {
+                for (let i = 0; i < playlistItems.length; i++) {
+                    playlistItems[i].classList.remove('active');
+                }
+            }
+
+            playlist.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === "LI") {
+                    removeActiveClass();
+                    playTrack(e.target);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                let currentTrack = playlist.getElementsByClassName('active')[0];
+                let nextTrack = currentTrack.nextElementSibling;
+                if (nextTrack) {
+                    removeActiveClass();
+                    playTrack(nextTrack);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
